@@ -5,7 +5,7 @@ import { fetchCountryDetails } from '../services/RestCountriesApi';
 import { RootStackParamList } from '../navigation/types'; 
 import { RouteProp } from '@react-navigation/native'; 
 
-const PantallaDetallesPaises = () => {
+const CountryDetailsScreen = () => {
   
   const route = useRoute<RouteProp<RootStackParamList, 'CountryDetails'>>(); 
   const { countryName } = route.params; 
@@ -31,4 +31,4 @@ const PantallaDetallesPaises = () => {
   );
 };
 
-export default PantallaDetallesPaises;
+export default CountryDetailsScreen;

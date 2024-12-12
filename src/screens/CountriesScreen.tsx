@@ -16,7 +16,7 @@ interface Country {
   };
 }
 
-const PantallaPaises = () => {
+const CountriesScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'Countries'>>(); 
   const { continent } = route.params;
   const [countries, setCountries] = useState<Country[]>([]);
@@ -36,7 +36,6 @@ const PantallaPaises = () => {
     getCountries();
   }, [continent]);
 
-  // Agregamos un componente básico de país en línea
   const CountryItem = ({ country }: { country: Country }) => (
     <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
       <Text>{country.name.common}</Text>
@@ -63,4 +62,4 @@ const PantallaPaises = () => {
   );
 };
 
-export default PantallaPaises;
+export default CountriesScreen;
