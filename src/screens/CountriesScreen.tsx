@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View, ActivityIndicator } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { fetchCountriesByContinent } from '../services/RestCountriesApi';
 import { RootStackParamList } from '../navigation/types';
 import { RouteProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Country } from '../services/RestCountriesApi';
+import CountryListItem from '../components/CountryListItem'; 
 
-
-interface Country {
-  name: {
-    common: string;
-    official: string;
-  };
-  flags: {
-    png: string;
-  };
-}
-
-const CountriesScreen = () => {
+  const CountriesScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Countries'>>();
   const route = useRoute<RouteProp<RootStackParamList, 'Countries'>>(); 
   const { continent } = route.params;
   const [countries, setCountries] = useState<Country[]>([]);
@@ -29,18 +22,12 @@ const CountriesScreen = () => {
         setCountries(data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching countries:', error);
+        console.error('Error:', error);
         setLoading(false);
       }
     };
     getCountries();
   }, [continent]);
-
-  const CountryItem = ({ country }: { country: Country }) => (
-    <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-      <Text>{country.name.common}</Text>
-    </View>
-  );
 
   if (loading) {
     return (
@@ -52,11 +39,14 @@ const CountriesScreen = () => {
 
   return (
     <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Países en {continent}</Text>
       <FlatList
         data={countries}
         keyExtractor={(item) => item.name.common}
-        renderItem={({ item }) => <CountryItem country={item} />}
+        renderItem={({ item }) => (
+          <CountryListItem 
+            country={item} 
+          />
+        )}
       />
     </View>
   );

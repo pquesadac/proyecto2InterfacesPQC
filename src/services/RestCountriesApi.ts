@@ -7,6 +7,10 @@ export interface Country {
     flags: {
       png: string;
     };
+    capital?: string[]; 
+    languages?: {
+      [key: string]: string; 
+    };
   }
   
   export const fetchContinents = async (): Promise<string[]> => {

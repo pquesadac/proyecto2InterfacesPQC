@@ -23,8 +23,7 @@ const ContinentsScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Continentes</Text>
+    <View style={{ flex: 1, padding: 17 }}>
       <FlatList
         data={continents}
         keyExtractor={(item, index) => index.toString()}
