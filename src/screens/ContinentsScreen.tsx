@@ -31,13 +31,12 @@ const ContinentsScreen = () => {
           <TouchableOpacity onPress={() => handlePress(item)}>
             <Text style={{ 
               fontSize: 18, 
-              paddingVertical: 20,
-              paddingLeft: 10, 
+              paddingVertical: 10,
+              paddingLeft: 10,
+              backgroundColor: '#008fff', 
               color: 'black', 
-              marginBottom: 8, 
-              borderRadius: 5, 
-              borderColor: '000000',
-              borderWidth: 1
+              marginBottom: 10, 
+              borderRadius: 15, 
               }}>{item}</Text>
           </TouchableOpacity>
         )}
